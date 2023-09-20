@@ -31,8 +31,7 @@ def show_article(id):
     session['page_views'] += 1
 
     if session['page_views'] <= 3:
-        article = Article.query.filter(Article.id == id).first()
-        return article.to_dict(), 200
+        return Article.query.filter(Article.id == id).first().to_dict(), 200
     
     response = make_response(jsonify({
             'message': 'Maximum pageview limit reached'}), 401)
